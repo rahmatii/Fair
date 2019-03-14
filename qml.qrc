@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>MyButton.qml</file>
+        <file>Rbutton.qml</file>
+        <file>Contact1.qml</file>
+        <file>Contact2.qml</file>
+        <file>Contactus.qml</file>
+        <file>Mykeyboard.qml</file>
+        <file>Rbutton1.qml</file>
+        <file>AdminInfo.qml</file>
+    </qresource>
+</RCC>
