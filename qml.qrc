@@ -10,5 +10,7 @@
         <file>Mykeyboard.qml</file>
         <file>Rbutton1.qml</file>
         <file>AdminInfo.qml</file>
+        <file>FormEdit.qml</file>
+        <file>MenuEdit.qml</file>
     </qresource>
 </RCC>

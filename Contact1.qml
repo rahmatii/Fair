@@ -265,57 +265,6 @@ Rectangle {
     Loader{
         id:loadkey
     }
-    Component{
-        id:keyb1
-        Mykeyboard{
-            id:loginkeyb
-            keyboardpos.x: -40
-            keyboardpos.y: 350
-            onKeyispressed: {
-                if(usertext1){
-                    var str1=textInput1.text;
-                    var str2;
-                    str2=str1.concat(keylabel);
-                    textInput1.text=str2;
-                }
-                if(usertext){
-                    var str11=textInput.text;
-                    var str22;
-                    str22=str11.concat(keylabel)
-                    textInput.text=str22;
-
-                }
-                if(usertext2){
-                    var str12=textEdit.text;
-                    var str23;
-                    str23=str12.concat(keylabel)
-                    textEdit.text=str23;
-
-                }
-            }
-            onClosepressed: loadkey.visible=false;
-            onBackpressed:{
-                if(usertext1){
-                    var str3=textInput1.text;
-                    var str4;
-                    str4=str3.substr(0,str3.length-1)
-                    textInput1.text=str4;
-                }
-                if(usertext){
-                    var str33=textInput.text;
-                    var str44;
-                    str44=str33.substr(0,str33.length-1)
-                    textInput.text=str44;
-                }
-                if(usertext2){
-                    var str35=textEdit.text;
-                    var str45;
-                    str45=str35.substr(0,str35.length-1)
-                    textEdit.text=str45;
-                }
-            }
-        }
-    }
 
 }
 

@@ -33,8 +33,6 @@ int main(int argc, char *argv[])
 //    settings.setValue("counterSmart",1);
 
 
-
-
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
 
 

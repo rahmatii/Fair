@@ -3,6 +3,7 @@
 #include <QtCore>
 #include <QQmlContext>
 #include <QVariant>
+#include <QTextStream>
 
 
 Services::Services(QQmlContext *ctxt)
@@ -71,14 +72,55 @@ void Services::setDataVirtual(QStringList data , int i)
     }
 }
 
-void Services::showDir()
+QStringList Services::fillMenu()
 {
-    QString path = "C:/Qt/Qt5.9.1"; // assume it is some path
+    QString filename = "Menu.txt";
+    QFile file(filename);
 
-    QDir dir( path );
+    QStringList line;
 
-    dir.setFilter( QDir::AllEntries | QDir::NoDotAndDotDot );
+    if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QTextStream in(&file);
+        while( !in.atEnd())
+        {
+            line.append(in.readLine());
+            line.append(in.readLine());
+        }
+    }
 
-    int total_files = dir.count();
-    qDebug()<<"count : "<<total_files;
+    file.close();
+    return line;
+}
+
+void Services::addToFile(QString menuName,int index,QStringList subMenuName)
+{
+
+    QString filename = "Menu.txt";
+    QFile file(filename);
+
+    QString line[100];
+    int line_count=0;
+
+    if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QTextStream in(&file);
+        while( !in.atEnd())
+        {
+            line[line_count]=in.readLine();
+            line_count++;
+        }
+        in << menuName << endl;
+        in << index << endl;
+    }
+
+    file.close();
+    ////////
+
+    QString filename2 = QString::number(line_count/2)+".txt";
+    QFile file2(filename2);
+    if (file2.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QTextStream stream2(&file2);
+        for(int i=0;i<subMenuName.length();i++)
+            stream2 << subMenuName[i] << endl;
+    }
+    file2.close();
 }
