@@ -7,6 +7,8 @@ import QtQuick.VirtualKeyboard 2.2
 import QtQuick.Window 2.2
 
 ApplicationWindow {
+   width: 700
+   height: 700
     property var list_menu: []
     Component.onCompleted: {
         list_menu=Services.fillMenu();
@@ -16,8 +18,8 @@ ApplicationWindow {
     }
 
     visible: true
-    visibility: "FullScreen"
-    title: qsTr("Hello World")
+//    visibility: "FullScreen"
+    title: qsTr("نرم افزار مدیریت نمایشگاهی")
     function activeoptions(){
         showcase.visible=true
         webview1.visible=false
@@ -800,82 +802,82 @@ ApplicationWindow {
 
             }
         }
-        Component{
-            id:mycom1
+//        Component{
+//            id:mycom1
 
-            Contact1{
-                id:contact1
-                visible: true
+//            Contact1{
+//                id:contact1
+//                visible: true
 
-                onRegpress: {
-                    background.visible=false
-                    formLoader.sourceComponent=undefined}
-                onExit2: {
-                    background.visible=false
-                    if(video1.visible)
-                        video1.play()
-                    formLoader.sourceComponent=undefined}
+//                onRegpress: {
+//                    background.visible=false
+//                    formLoader.sourceComponent=undefined}
+//                onExit2: {
+//                    background.visible=false
+//                    if(video1.visible)
+//                        video1.play()
+//                    formLoader.sourceComponent=undefined}
 
-            }
-        }
-        Component{
-            id:mycom2
+//            }
+//        }
+//        Component{
+//            id:mycom2
 
-            Contact2{
-                id:contact2
-                visible: true
-                onRegpress2: {
-                    background.visible=false
-                    formLoader.sourceComponent=undefined}
-                onExit3: {
-                    background.visible=false
-                    if(video1.visible)
-                        video1.play()
-                    formLoader.sourceComponent=undefined}
+//            Contact2{
+//                id:contact2
+//                visible: true
+//                onRegpress2: {
+//                    background.visible=false
+//                    formLoader.sourceComponent=undefined}
+//                onExit3: {
+//                    background.visible=false
+//                    if(video1.visible)
+//                        video1.play()
+//                    formLoader.sourceComponent=undefined}
 
 
-            }
-        }
+//            }
+//        }
 
     }
 
-    InputPanel {
-        //            Component.onCompleted: {
-        //                listlang[2]="ar_AR";
-        //                listlang[1]="en_US";
-        //               listlang[0]="fa_FA";
-        //                listlang[3]="fr_FR";
-        //               VirtualKeyboardSettings.locale = "fa_FA";
-        //                VirtualKeyboardSettings.activeLocales = listlang;
-        //            }
+//    InputPanel {
+//        //            Component.onCompleted: {
+//        //                listlang[2]="ar_AR";
+//        //                listlang[1]="en_US";
+//        //               listlang[0]="fa_FA";
+//        //                listlang[3]="fr_FR";
+//        //               VirtualKeyboardSettings.locale = "fa_FA";
+//        //                VirtualKeyboardSettings.activeLocales = listlang;
+//        //            }
 
-        id: inputPanel
-        z: 99
-        x:100
-        y: 1080
-        width: screen.width/2
+//        id: inputPanel
+//        z: 99
+//        x:100
+//        y: 1080
+//        width: screen.width/2
 
-        states: State {
-            name: "visible"
-            when: inputPanel.active
-            PropertyChanges {
-                target: inputPanel
-                y: parent.height-200
-            }
-        }
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
-            ParallelAnimation {
-                NumberAnimation {
-                    properties: "y"
-                    duration: 250
-                    easing.type: Easing.InOutQuad
-                }
-            }
-        }
-    }
+//        states: State {
+//            name: "visible"
+//            when: inputPanel.active
+//            PropertyChanges {
+//                target: inputPanel
+//                y: parent.height-200
+//            }
+//        }
+//        transitions: Transition {
+//            from: ""
+//            to: "visible"
+//            reversible: true
+//            ParallelAnimation {
+//                NumberAnimation {
+//                    properties: "y"
+//                    duration: 250
+//                    easing.type: Easing.InOutQuad
+//                }
+//            }
+//        }
+//    }
 
 
 

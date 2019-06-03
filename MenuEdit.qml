@@ -8,8 +8,8 @@ import QtQuick.VirtualKeyboard 2.2
 
 Rectangle {
 
-    width: 800
-    height: 1080
+    width: 700
+    height: 700
     property string comboselect
     property var list: []
     signal regpress
@@ -19,8 +19,8 @@ Rectangle {
 
     Text {
         id: element1
-        x:800
-        y: 400
+        x:374
+        y: 201
         width: 118
         height: 21
         text: qsTr("نام منو:")
@@ -32,8 +32,8 @@ Rectangle {
 
     Rectangle {
         id: rectangle
-        x: 600
-        y: 400
+        x: 180
+        y: 201
         width: 200
         height: 21
         color: "#ffffff"
@@ -54,8 +54,8 @@ Rectangle {
 
     Text {
         id: element2
-        x: 800
-        y: 450
+        x: 374
+        y: 248
         width: 118
         height: 21
         text: qsTr("نوع منو")
@@ -67,27 +67,58 @@ Rectangle {
 
     Rectangle {
         id: rectangle1
-        x: 600
-        y: 450
+        x: 8
+        y: 473
         width: 200
         height: 21
         ComboBox {
             id:cbItems
+            x: 175
+            y: -237
             currentIndex: -1
             width: 200
-            model: [ "عکس", "ویدیو", "فایل" ]
-            onCurrentTextChanged:{comboselect=currentText;console.log(comboselect);rec2.visible=true;
-                rectangle2.visible=true;
+            model: [ "عکس", "ویدیو", "فایل" , "صفحه وب" ]
+            onCurrentTextChanged:{
+                comboselect=currentText;
+                console.log(comboselect);
+
+                if(currentIndex!=3){
+
+                    rectangle2.visible=true;
+                     rec2.visible=true;
+                    element3.visible=false
+                    rec3.visible=false;
+                }
+                else {
+                    element3.visible=true
+                    rec3.visible=true;
+                    rectangle2.visible=false;
+                     rec2.visible=false;
+                }
+
             }
         }
 
 
     }
+    Text {
+        id: element3
+        x:374
+        y: 302
+        width: 118
+        height: 21
+        visible: false
+        text: qsTr("آدرس صفحه وب :")
+        font.family: "IRANYekan"
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignRight
+        font.pixelSize: 12
+    }
 
     Rectangle {
         id: rectangle2
-        x: 800
-        y: 500
+        x: 407
+        y: 302
         width: 100
         height: 21
         visible: false
@@ -106,8 +137,8 @@ Rectangle {
     Rectangle{
         id:rec2
         visible: false
-        x: 600
-        y: 500
+        x: 201
+        y: 297
         width: 100
         height: 40
         //color: "Red"
@@ -123,6 +154,31 @@ Rectangle {
             onClicked:{fileDialog.visible=true;}
         }
     }
+    Rectangle{
+        id:rec3
+        visible: false
+        x: 180
+        y: 343
+        width: 200
+        height: 21
+        color: "#ffffff"
+        radius: 10
+        border.width: 1
+        TextInput {
+            id: textInput3
+            text: qsTr("")
+            anchors.leftMargin: -25
+            rightPadding: 7
+            font.family: "IRANYekan"
+            horizontalAlignment: Text.AlignRight
+            anchors.fill: parent
+            font.pixelSize: 12
+        }
+
+    }
+
+
+
     FileDialog {
 
         id: fileDialog
@@ -150,8 +206,8 @@ Rectangle {
 
     ListView{
         //Component.onCompleted: cartModel.append({"name":"a","name":"b"})
-        x:600
-        y:550
+        x:257
+        y:417
         width: 400
         height: contentHeight
       //  anchors.fill: parent
@@ -191,8 +247,8 @@ Rectangle {
 
     RoundButton {
         id: regbt
-        x: 500
-        y: 500
+        x: 180
+        y: 370
         width: 110
         height: 32
         text: "ثبت"
@@ -200,10 +256,52 @@ Rectangle {
         font.pointSize: 10
         font.family: "IRANYekan"
         onClicked: {
-            backtomenu();
-        Services.addToFile(textInput.text,cbItems.currentIndex,list);
+            if(textInput.text==""){
+                mymsg.visible=true
+                mymsg.msg="لطفا نام منو را وارد کنید."
+            }
+            else if(cbItems.currentIndex==0 && list.length==0)
+            {
+                mymsg.visible=true
+                mymsg.msg="لطفا حداقل یک تصویر آپلود کنید."
+            }
+            else if(cbItems.currentIndex==1 && list.length==0)
+            {
+                mymsg.visible=true
+                mymsg.msg="لطفا حداقل یک فیلم آپلود کنید."
+            }
+            else if(cbItems.currentIndex==2 && list.length==0)
+            {
+                mymsg.visible=true
+                mymsg.msg="لطفا حداقل یک فایل آپلود کنید."
+            }
+
+            else{
+                backtomenu();
+                Services.addToFile(textInput.text,cbItems.currentIndex,list);
+            }
         }
 
+    }
+    RoundButton {
+        id: cancelbt
+        x: 390
+        y: 370
+        width: 110
+        height: 32
+        text: "انصراف"
+        spacing: -1
+        font.pointSize: 10
+        font.family: "IRANYekan"
+        onClicked: {
+            backtomenu();
+       // Services.addToFile(textInput.text,cbItems.currentIndex,list);
+        }
+
+    }
+    MsgBox{
+        id:mymsg
+        visible: false
     }
 
 }

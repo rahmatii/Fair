@@ -12,5 +12,6 @@
         <file>AdminInfo.qml</file>
         <file>FormEdit.qml</file>
         <file>MenuEdit.qml</file>
+        <file>MsgBox.qml</file>
     </qresource>
 </RCC>
